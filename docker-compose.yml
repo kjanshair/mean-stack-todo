@@ -1,0 +1,16 @@
+version: "2"
+
+services:
+  db:
+    image: mongo 
+    ports:
+      - 27017:27017
+    container_name: mongodb
+  
+  app:
+    image: docker-todo 
+    container_name: app
+    depends_on:
+      - db
+    ports:
+      - 80:8080

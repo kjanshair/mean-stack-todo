@@ -1,11 +1,11 @@
-FROM node
+FROM node:carbon
 
-COPY . /app
+COPY package.json /app/package.json
 
 WORKDIR /app
 
-RUN ["npm", "install"]
+RUN ["npm", "install", "-g"]
 
-EXPOSE 8080
+# EXPOSE 8080
 
-ENTRYPOINT ["npm", "start"]
+# ENTRYPOINT ["npm", "start"]

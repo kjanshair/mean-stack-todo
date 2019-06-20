@@ -1,16 +1,28 @@
 version: "2"
 
 services:
-  db:
+  db1:
     image: mongo 
     ports:
       - 27017:27017
-    container_name: mongodb
+    container_name: db1
+
+  db2:
+    image: mongo 
+    ports:
+      - 27018:27017
+    container_name: db2
   
   app:
-    image: docker-todo 
+    build: .
+    image: docker-todo
     container_name: app
     depends_on:
-      - db
+      - db1
+      - db2
     ports:
       - 80:8080
+    volumes:
+      - "./:/app"
+    working_dir: /app
+    command: npm start

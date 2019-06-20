@@ -1,18 +1,26 @@
-# Express Mongo Todo App
+# Vault - Express Mongo Todo App
 
-## Run locally
+Run Vault with:
 
-To application locally, change the URI for MongoDB Connection string in the `config/database.js` file from
+`sudo vault server -dev`
 
-`localUrl: 'mongodb://mongodb/todo'`
+Put root token with:
 
-to 
+`sudo echo "VAULT_TOKEN=x.xxxxxxxxxxxxxxx" > /etc/sysconfig/consul-template`
 
-`localUrl: 'mongodb://localhost/todo'`
+Add a KV v2 Value:
 
-And run
+`vault kv put secret/database url=mongodb://db1/todo`
 
-`npm start`
+## Enable `consul-template` systemd service
+
+Modify `consul-template.hcl` (such as changing `database.ctmpl` or `database.js` path) for your environment.
+
+Run:
+
+`sudo chmod +x init.sh`
+
+`./init.sh`
 
 ## Run via Docker-Compose
 
